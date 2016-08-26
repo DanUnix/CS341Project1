@@ -34,3 +34,6 @@
 # Ignore CSV and text files
 *.csv
 *.txt
+
+# Ignore Swap files
+*.swp
