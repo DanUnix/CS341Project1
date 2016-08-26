@@ -29,16 +29,39 @@ using std::endl;
 
 
 // classes
+
+// CrimeCode Class
 class CrimeCode
 {
     public:
-        string IUCR;
-        string Pdescript;
-        string Sdescript; 
+        string IUCR;        // Illinois Uniform Crime Reporting
+        string Pdescript;   // Primary Description of code
+        string Sdescript;   // Secondary Description of code
 
     CrimeCode(string iucr, string primary, string secondary)
         : IUCR(iucr), Pdescript(primary), Sdescript(secondary)
     { } 
+};
+
+
+// Crime Class
+class Crime
+{
+    public:
+        string DateTime;
+        string IUCR;
+        bool  Arrest;
+        bool DomesticViolence;
+        int Beat;
+        int District;
+        int Ward;
+        int Community;
+        int Year;
+    
+    Crime(string datetime, string iucr, bool arrest, bool domestic, int beat, int district, int ward, int community, int year)
+        : DateTime(datetime), IUCR(iucr), Arrest(arrest), DomesticViolence(domestic), Beat(beat), District(district), Ward(ward),
+            Community(community), Year(year)
+    { }
 };
 
 // main Function
