@@ -67,6 +67,7 @@ class Crime
 // main Function
 int main()
 {
-
+    // Open crime code files csv file 
+    ifstream crime_code_file("crime-codes.csv");
 }
 // End of main Function
