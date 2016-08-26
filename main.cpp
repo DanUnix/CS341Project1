@@ -27,6 +27,20 @@ using std::sort;
 using std::cout;
 using std::endl;
 
+
+// classes
+class CrimeCode
+{
+    public:
+        string IUCR;
+        string Pdescript;
+        string Sdescript; 
+
+    CrimeCode(string iucr, string primary, string secondary)
+        : IUCR(iucr), Pdescript(primary), Sdescript(secondary)
+    { } 
+};
+
 // main Function
 int main()
 {
