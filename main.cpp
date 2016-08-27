@@ -29,6 +29,7 @@ using std::stoi;
 using std::sort;
 using std::cout;
 using std::endl;
+using std::setw;
 
 
 /** classes **/
@@ -89,6 +90,23 @@ void output_crimes(vector<Crime>& myCrime)
 {
 	// Use size operation to get the number of crimes
 	cout << "# of crimes: " << myCrime.size() << endl << endl;
+	string mybool1,mybool2;	
+	// Print first 3 crimes
+	for(auto i = 0; i < 3; ++i){
+		
+		if(myCrime[i].Arrest == "TRUE")
+			mybool1 = "arrest";
+		else
+			mybool2 = "	";
+		if(myCrime[i].DomesticViolence == "TRUE")
+			mybool2 ="domestic violence";
+		else
+			mybool2 = "	";
+			
+		cout << myCrime[i].IUCR << ":	" << myCrime[i].DateTime <<  ", "<< myCrime[i].District << "," 
+				<< myCrime[i].Beat << ", " << myCrime[i].Ward << ", " << myCrime[i].Community << mybool1 
+				<< ", " << mybool2 << endl;
+	}
 }
 // End of output_crimes function
 
@@ -130,7 +148,7 @@ int main(int argc, char* argv[])
     
     getline(crime_file, line);  // skip header
 
-    while( getline(crime_file, line)){
+    while( getline(crime_file, line) ){
         
         stringstream ss(line);  // Use stringstream to help parse CSV file
         
