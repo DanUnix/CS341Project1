@@ -9,6 +9,7 @@
 
 // Preprocessor Directives
 #include <iostream>
+#include <iterator>
 #include <iomanip>
 #include <fstream>
 #include <string>
@@ -17,8 +18,10 @@
 #include <algorithm>
 
 // namespaces
+
 using std::string;
 using std::ifstream;
+using std::istream_iterator;
 using std::vector;
 using std::stringstream;
 using std::getline;
@@ -71,20 +74,25 @@ class Crime
  *
  * Function outputs the range of the dates which marks from one period to another
  */
-void date_range(vector<Crime> myCrime)
+void date_range(vector<Crime>& myCrime)
 {
+		for(auto& x: myCrime)
+			cout << "Date range: " << x.DateTime << endl;
 }
 // End of date_range function
 
 
 // main Function
-int main()
+int main(int argc, char* argv[])
 {
     // Print title of Program
     cout << "** Crime Analysis **" << endl;
 
     // Open crime.csv file 
     ifstream crime_file("crimes.csv");
+
+	istream_iterator<string> start(crime_file), end;
+
     string line, date_time, iucr, arrest, domestic, beat, district, ward, community, year;
 
     if(!crime_file.good()){
@@ -121,7 +129,7 @@ int main()
         // insert @ end;
         crimes.push_back(C); 
     }
-
-    
+	
+	date_range(crimes);	 
 }
 // End of main Function
