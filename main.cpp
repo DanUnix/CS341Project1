@@ -76,8 +76,7 @@ class Crime
  */
 void date_range(vector<Crime>& myCrime)
 {
-		for(auto& x: myCrime)
-			cout << "Date range: " << x.DateTime << endl;
+			cout << "Date range: " << myCrime.front().DateTime << " - " << myCrime.back().DateTime << endl;
 }
 // End of date_range function
 
@@ -86,7 +85,7 @@ void date_range(vector<Crime>& myCrime)
 int main(int argc, char* argv[])
 {
     // Print title of Program
-    cout << "** Crime Analysis **" << endl;
+    cout << "** Crime Analysis **" << endl << endl;
 
     // Open crime.csv file 
     ifstream crime_file("crimes.csv");
@@ -130,6 +129,9 @@ int main(int argc, char* argv[])
         crimes.push_back(C); 
     }
 	
+	// Output date range (recall crimes are in order by date)	
 	date_range(crimes);	 
+
+	// Output Total number of crimes
 }
 // End of main Function
