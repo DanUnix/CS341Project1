@@ -76,7 +76,7 @@ class Crime
  */
 void date_range(vector<Crime>& myCrime)
 {
-			cout << "Date range: " << myCrime.front().DateTime << " - " << myCrime.back().DateTime << endl;
+			cout << "Date range: " << myCrime.front().DateTime << " - " << myCrime.back().DateTime << endl << endl;
 }
 // End of date_range function
 
