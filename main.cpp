@@ -107,6 +107,26 @@ void output_crimes(vector<Crime>& myCrime)
 				<< myCrime[i].Beat << ", " << myCrime[i].Ward << ", " << myCrime[i].Community << mybool1 
 				<< ", " << mybool2 << endl;
 	}
+	
+	cout << "..." << endl;
+	
+	// Print last 3 crimes
+	for(auto i = myCrime.size()-3; i < myCrime.size(); ++i){
+		
+		if(myCrime[i].Arrest == "TRUE")
+            mybool1 = "arrest";
+        else
+            mybool2 = " ";
+        if(myCrime[i].DomesticViolence == "TRUE")
+            mybool2 ="domestic violence";
+        else
+            mybool2 = " ";
+             
+        cout << myCrime[i].IUCR << ":   " << myCrime[i].DateTime <<  ", "<< myCrime[i].District << ", " 
+                << myCrime[i].Beat << ", " << myCrime[i].Ward << ", " << myCrime[i].Community << ", " << mybool1
+                << "   " << mybool2 << endl;
+		
+	}
 }
 // End of output_crimes function
 
