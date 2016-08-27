@@ -71,11 +71,11 @@ class Crime
  *
  * Function outputs the range of the dates which marks from one period to another
  */
-void date_range()
+void date_range(vector<Crime> myCrime)
 {
-
 }
 // End of date_range function
+
 
 // main Function
 int main()
@@ -121,5 +121,7 @@ int main()
         // insert @ end;
         crimes.push_back(C); 
     }
+
+    
 }
 // End of main Function
