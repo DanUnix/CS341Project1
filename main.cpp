@@ -85,11 +85,23 @@ void date_range(vector<Crime>& myCrime)
  *
  * Function outputs the number of crimes
  */
-void output_crimes()
+void output_crimes(vector<Crime>& myCrime)
 {
-
+	// Use size operation to get the number of crimes
+	cout << "# of crimes: " << myCrime.size() << endl << endl;
 }
 // End of output_crimes function
+
+/*
+ * output_crime_codes() function
+ * 
+ * Function outputs the number of crime codes
+ */
+void output_crime_codes()
+{
+	cout << "# of crime codes: " << endl << endl;
+}
+// End of output_crime_codes
 
 /* 
  * main Function
@@ -147,5 +159,6 @@ int main(int argc, char* argv[])
 	date_range(crimes);	 
 
 	// Output Total number of crimes
+	output_crimes(crimes);
 }
 // End of main Function
