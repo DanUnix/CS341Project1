@@ -81,7 +81,11 @@ void date_range(vector<Crime>& myCrime)
 // End of date_range function
 
 
-// main Function
+/* 
+ * main Function
+ *
+ * Starts the program and reads the CSV files
+ */
 int main(int argc, char* argv[])
 {
     // Print title of Program
