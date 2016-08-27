@@ -70,7 +70,7 @@ class Crime
 /** End of Classes **/
 
 /*
- * date_range function
+ * date_range() function
  *
  * Function outputs the range of the dates which marks from one period to another
  */
@@ -80,6 +80,16 @@ void date_range(vector<Crime>& myCrime)
 }
 // End of date_range function
 
+/*
+ * output_crimes() function
+ *
+ * Function outputs the number of crimes
+ */
+void output_crimes()
+{
+
+}
+// End of output_crimes function
 
 /* 
  * main Function
