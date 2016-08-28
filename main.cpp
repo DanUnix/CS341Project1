@@ -18,7 +18,6 @@
 #include <algorithm>
 
 // namespaces
-
 using std::string;
 using std::ifstream;
 using std::istream_iterator;
@@ -135,11 +134,31 @@ void output_crimes(vector<Crime>& myCrime)
  * 
  * Function outputs the number of crime codes
  */
-void output_crime_codes()
+void output_crime_codes(vector<CrimeCode>& myCrimeCode)
 {
-	cout << "# of crime codes: " << endl << endl;
+	// Display the number of crime codes
+	cout << "# of crime codes: " << myCrimeCode.size() << endl << endl;
+
+
+	// Sort the crime codes
+	sort(myCrimeCode.begin(), myCrimeCode.end(), [](CrimeCode& a, CrimeCode& b){
+		if(a.IUCR < b.IUCR)
+			return true;
+		else
+			return false;
+	});
+
+	for(auto i = 0; i < 3; ++i){
+		
+		cout << myCrimeCode[i].IUCR <<  myCrimeCode[i].Pdescript << myCrimeCode[i].Sdescript << endl << endl;
+	}	
 }
 // End of output_crime_codes
+
+void top_five_crimes(vector<Crime>& myCrime)
+{
+	
+} 
 
 /* 
  * main Function
@@ -153,15 +172,25 @@ int main(int argc, char* argv[])
 
     // Open crime.csv file 
     ifstream crime_file("crimes.csv");
+	// String values to get crime statistics
+    string line, date_time, iucr, arrest, domestic, beat, district, ward, community, year;
+
+	// Open crime-codes.csv file
+	ifstream crime_code_file("crime-codes.csv");
+	// String vaules to get crime code statistics
+	string line2, crime_code_iucr, prime, secondary;
 
 	istream_iterator<string> start(crime_file), end;
 
-    string line, date_time, iucr, arrest, domestic, beat, district, ward, community, year;
-
+	// Check if crime file exist, if not exit program
     if(!crime_file.good()){
         cout << "cannot open file!" << endl;
         return -1;
     }
+	if(!crime_code_file.good()){
+		cout << "cannot open crime code file!" << endl;
+		return -1;
+	}
 
     // Input data into a vector of crime objects:
     vector<Crime> crimes;
@@ -193,10 +222,34 @@ int main(int argc, char* argv[])
         crimes.push_back(C); 
     }
 	
+	// Input Crime codes into a vector of crime code objects
+	vector<CrimeCode> crimeCodes;
+
+	getline(crime_code_file, line2);
+	while( getline(crime_code_file, line2) ){
+		
+		stringstream ss2(line2);	// Use string stream to help parse crime codes CSV file
+
+		// parse line2
+		getline(ss2, crime_code_iucr);
+		getline(ss2, prime);
+		getline(ss2, secondary);
+
+		CrimeCode C2(crime_code_iucr, prime, secondary);
+		
+		// insert @ end;
+		crimeCodes.push_back(C2);
+	}
 	// Output date range (recall crimes are in order by date)	
 	date_range(crimes);	 
 
-	// Output Total number of crimes
+	// Output total number of crime codes and codes
+	output_crime_codes(crimeCodes);
+
+	// Output Total number of crimes and crimes
 	output_crimes(crimes);
+
+	// Top-5 Crimes
+	top_five_crimes(crimes);	
 }
 // End of main Function
