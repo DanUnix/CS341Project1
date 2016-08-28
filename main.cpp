@@ -148,10 +148,16 @@ void output_crime_codes(vector<CrimeCode>& myCrimeCode)
 			return false;
 	});
 
+	// Output the first 3 crime codes
 	for(auto i = 0; i < 3; ++i){
 		
 		cout << myCrimeCode[i].IUCR <<  myCrimeCode[i].Pdescript << myCrimeCode[i].Sdescript << endl << endl;
 	}	
+	cout << "..." << endl;
+	// Output the last 3 crime codes
+	for(auto i = myCrimeCode.size()-3; i < myCrimeCode.size(); ++i){
+		cout << myCrimeCode[i].IUCR <<  myCrimeCode[i].Pdescript << myCrimeCode[i].Sdescript << endl << endl;	
+	}
 }
 // End of output_crime_codes
 
