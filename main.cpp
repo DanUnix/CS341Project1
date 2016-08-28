@@ -29,6 +29,7 @@ using std::sort;
 using std::cout;
 using std::endl;
 using std::setw;
+using std::count;
 
 
 /** classes **/
@@ -40,6 +41,7 @@ class CrimeCode
         string IUCR;        // Illinois Uniform Crime Reporting
         string Pdescript;   // Primary Description of code
         string Sdescript;   // Secondary Description of code
+        int counter = 0;        // this counts the number of crimes associated with this crime code        
 
     CrimeCode(string iucr, string primary, string secondary)
         : IUCR(iucr), Pdescript(primary), Sdescript(secondary)
@@ -65,7 +67,9 @@ class Crime
         : DateTime(datetime), IUCR(iucr), Arrest(arrest), DomesticViolence(domestic), Beat(beat), District(district), Ward(ward),
             Community(community), Year(year)
     { }
+
 };
+
 
 /** End of Classes **/
 
@@ -151,7 +155,7 @@ void output_crime_codes(vector<CrimeCode>& myCrimeCode)
 	// Output the first 3 crime codes
 	for(auto i = 0; i < 3; ++i){
 		
-		cout << myCrimeCode[i].IUCR <<  myCrimeCode[i].Pdescript << myCrimeCode[i].Sdescript << endl << endl;
+		cout << myCrimeCode[i].IUCR <<  myCrimeCode[i].Pdescript << myCrimeCode[i].Sdescript << endl;
 	}	
 	cout << "..." << endl;
 	// Output the last 3 crime codes
@@ -161,9 +165,29 @@ void output_crime_codes(vector<CrimeCode>& myCrimeCode)
 }
 // End of output_crime_codes
 
-void top_five_crimes(vector<Crime>& myCrime)
+void top_five_crimes(vector<Crime>& myCrime, vector<CrimeCode>& myCrimeCode)
 {
-	
+    cout << endl << "** Top-5 Crimes **" << endl;  	
+    for(auto i = 0; i < myCrime.size(); ++i){
+        for(auto j = 0; j < myCrimeCode.size(); ++j){
+            myCrimeCode[j].counter = 0; 
+            if(myCrime[i].IUCR == myCrimeCode[j].IUCR) 
+                myCrimeCode[j].counter++;
+        }    
+    }
+    cout << "Code:  " << "Total,    " << "Description" << endl;
+    sort(myCrimeCode.begin(), myCrimeCode.end(), [](CrimeCode& a, CrimeCode& b){
+    
+        if(a.counter < b.counter)
+            return true;
+        else
+            return false;
+    });
+    for(auto i = 0; i < 5; ++i){
+        
+        cout << myCrimeCode[i].IUCR << myCrimeCode[i].counter << ", " << myCrimeCode[i].Pdescript << myCrimeCode[i].Sdescript << endl;
+    } 
+    
 } 
 
 /* 
@@ -256,6 +280,8 @@ int main(int argc, char* argv[])
 	output_crimes(crimes);
 
 	// Top-5 Crimes
-	top_five_crimes(crimes);	
+	top_five_crimes(crimes, crimeCodes);	
+    
+    cout << endl << "** Done ** " << endl;
 }
 // End of main Function
