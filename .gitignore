@@ -37,3 +37,6 @@
 
 # Ignore Swap files
 *.swp
+
+# Ignore zip files
+*.zip
